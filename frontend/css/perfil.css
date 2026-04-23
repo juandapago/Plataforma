@@ -1,0 +1,168 @@
+/* =====================
+   LAYOUT GENERAL
+   ===================== */
+body {
+  padding: 0;
+  padding-bottom: 80px;
+}
+
+.page {
+  padding: 1.5rem 1rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* =====================
+   ENCABEZADO
+   ===================== */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* =====================
+   AVATAR
+   ===================== */
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #0f0e11;
+  margin-bottom: 0.75rem;
+}
+
+.avatar-nombre {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.avatar-email {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* =====================
+   FORMULARIO
+   ===================== */
+.form-section {
+  margin-bottom: 1rem;
+}
+
+.form-section label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+/* =====================
+   BANNER DE EXITO
+   ===================== */
+.success-banner {
+  display: none;
+  background: rgba(109, 200, 138, 0.1);
+  border: 1px solid rgba(109, 200, 138, 0.3);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--success);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.success-banner.visible {
+  display: block;
+}
+
+/* =====================
+   BOTON CERRAR SESION
+   ===================== */
+.btn-cerrar {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.9rem;
+  background: transparent;
+  border: 1px solid var(--error);
+  border-radius: var(--radius);
+  color: var(--error);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-cerrar:hover {
+  background: rgba(232, 107, 107, 0.1);
+}
+
+/* =====================
+   BARRA DE NAVEGACION
+   ===================== */
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.6rem 0 1rem 0;
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.6rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  flex: 1;
+  text-align: center;
+}
+
+.nav-item.active {
+  color: var(--accent);
+}
+
+.nav-item svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
