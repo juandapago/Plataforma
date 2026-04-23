@@ -2,7 +2,7 @@
 // CONFIGURACION
 // =====================
 
-const API_URL = "http://127.0.0.1:8000/api";
+const API_URL = "https://plataforma-api-56i2.onrender.com/api";
 const token = localStorage.getItem("token");
 
 
