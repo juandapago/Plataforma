@@ -1,14 +1,10 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/pages/login.html" },
-    { "source": "/pages/login.html", "destination": "/pages/login.html" },
-    { "source": "/pages/register.html", "destination": "/pages/register.html" },
-    { "source": "/pages/dashboard.html", "destination": "/pages/dashboard.html" },
-    { "source": "/pages/gastos.html", "destination": "/pages/gastos.html" },
-    { "source": "/pages/ingresos.html", "destination": "/pages/ingresos.html" },
-    { "source": "/pages/presupuesto.html", "destination": "/pages/presupuesto.html" },
-    { "source": "/pages/historial.html", "destination": "/pages/historial.html" },
-    { "source": "/pages/calendario.html", "destination": "/pages/calendario.html" },
-    { "source": "/pages/perfil.html", "destination": "/pages/perfil.html" }
+  "version": 2,
+  "routes": [
+    { "src": "/", "dest": "/pages/login.html" },
+    { "src": "/pages/(.*)", "dest": "/pages/$1" },
+    { "src": "/css/(.*)", "dest": "/css/$1" },
+    { "src": "/js/(.*)", "dest": "/js/$1" },
+    { "src": "/img/(.*)", "dest": "/img/$1" }
   ]
 }
