@@ -1,10 +1,7 @@
 {
-  "version": 2,
-  "routes": [
-    { "src": "/", "dest": "/pages/login.html" },
-    { "src": "/pages/(.*)", "dest": "/pages/$1" },
-    { "src": "/css/(.*)", "dest": "/css/$1" },
-    { "src": "/js/(.*)", "dest": "/js/$1" },
-    { "src": "/img/(.*)", "dest": "/img/$1" }
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/$1" }
   ]
 }
