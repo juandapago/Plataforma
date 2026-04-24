@@ -12,7 +12,7 @@ router = APIRouter()
 
 # =====================
 # MODELO DE DATOS
-# =====================
+# ======================
 class Transaccion(BaseModel):
     tipo: str
     monto: float
