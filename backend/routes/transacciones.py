@@ -1,6 +1,6 @@
 # =====================
 # RUTAS DE TRANSACCIONES
-# =====================
+# ======================
 from fastapi import APIRouter, HTTPException, Header
 from pydantic import BaseModel
 from database import get_connection
