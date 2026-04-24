@@ -130,22 +130,24 @@ def eliminar_transaccion(transaction_id: str, authorization: str = Header(None))
     conn = get_connection()
     cursor = conn.cursor()
 
-    # Verificar que la transaccion pertenece al usuario
+    # Verificar que existe
     cursor.execute(
-        "SELECT tipo, monto, fecha FROM actas WHERE id = %s AND user_id = %s",
-        (transaction_id, user_id)
+        "SELECT tipo, monto, fecha FROM actas WHERE id = %s::uuid",
+        (transaction_id,)
     )
     transaccion = cursor.fetchone()
 
     if not transaccion:
+        cursor.close()
+        conn.close()
         raise HTTPException(status_code=404, detail="Transacción no encontrada")
 
     tipo = transaccion[0]
     monto = float(transaccion[1])
     fecha = transaccion[2]
 
-    # Eliminar la transaccion
-    cursor.execute("DELETE FROM actas WHERE id = %s", (transaction_id,))
+    # Eliminar
+    cursor.execute("DELETE FROM actas WHERE id = %s::uuid", (transaction_id,))
 
     # Actualizar resumen diario
     cursor.execute(
