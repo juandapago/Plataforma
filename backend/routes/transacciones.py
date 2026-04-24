@@ -119,3 +119,49 @@ def obtener_transacciones(mes: int, anio: int, authorization: str = Header(None)
         })
 
     return transacciones
+# =====================
+# ELIMINAR TRANSACCION
+# DELETE /api/transacciones/{id}
+# =====================
+@router.delete("/transacciones/{transaction_id}")
+def eliminar_transaccion(transaction_id: str, authorization: str = Header(None)):
+    user_id = obtener_user_id(authorization)
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    # Verificar que la transaccion pertenece al usuario
+    cursor.execute(
+        "SELECT tipo, monto, fecha FROM actas WHERE id = %s AND user_id = %s",
+        (transaction_id, user_id)
+    )
+    transaccion = cursor.fetchone()
+
+    if not transaccion:
+        raise HTTPException(status_code=404, detail="Transacción no encontrada")
+
+    tipo = transaccion[0]
+    monto = float(transaccion[1])
+    fecha = transaccion[2]
+
+    # Eliminar la transaccion
+    cursor.execute("DELETE FROM actas WHERE id = %s", (transaction_id,))
+
+    # Actualizar resumen diario
+    cursor.execute(
+        """UPDATE resumen_diario SET
+           total_gastos = total_gastos - %s,
+           total_ingresos = total_ingresos - %s
+           WHERE user_id = %s AND fecha = %s""",
+        (
+            monto if tipo == "gasto" else 0,
+            monto if tipo == "ingreso" else 0,
+            user_id, fecha
+        )
+    )
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return {"mensaje": "Transacción eliminada correctamente"}

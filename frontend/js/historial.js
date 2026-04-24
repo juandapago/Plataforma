@@ -70,9 +70,6 @@ function formatearFecha(fechaStr) {
 }
 
 
-// =====================
-// RENDERIZAR LISTA
-// =====================
 function renderizarLista(transacciones) {
   const lista = document.getElementById("lista");
 
@@ -91,7 +88,7 @@ function renderizarLista(transacciones) {
     const signo = t.tipo === "gasto" ? "-" : "+";
 
     return `
-      <div class="transaccion-item">
+      <div class="transaccion-item" id="item-${t.id}">
         <div class="transaccion-icono ${t.tipo}">
           ${icono}
         </div>
@@ -100,9 +97,12 @@ function renderizarLista(transacciones) {
           ${t.descripcion ? `<p class="descripcion">${t.descripcion}</p>` : ""}
           <p class="fecha">${formatearFecha(t.fecha)}</p>
         </div>
-        <p class="transaccion-monto ${t.tipo}">
-          ${signo}${formatearMoneda(t.monto)}
-        </p>
+        <div class="transaccion-derecha">
+          <p class="transaccion-monto ${t.tipo}">
+            ${signo}${formatearMoneda(t.monto)}
+          </p>
+          <button class="btn-eliminar" onclick="eliminarTransaccion('${t.id}')">🗑️</button>
+        </div>
       </div>
     `;
   }).join("");
@@ -136,6 +136,44 @@ function filtrar(tipo) {
   }
 }
 
+async function eliminarTransaccion(id) {
+  if (!confirm("¿Seguro que quieres eliminar esta transacción?")) return;
+
+  try {
+    const respuesta = await fetch(API_URL + "/transacciones/" + id, {
+      method: "DELETE",
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    });
+
+    if (!respuesta.ok) {
+      alert("Error al eliminar la transacción");
+      return;
+    }
+
+    // Eliminar el elemento de la lista sin recargar
+    document.getElementById("item-" + id).remove();
+
+    // Si la lista queda vacía mostrar mensaje
+    if (todasLasTransacciones.length === 0) {
+      document.getElementById("lista").innerHTML = `
+        <div class="vacio">
+          <div class="icono">📭</div>
+          <p>No hay transacciones para mostrar</p>
+        </div>
+      `;
+    }
+
+    // Actualizar el array local
+    todasLasTransacciones = todasLasTransacciones.filter(function(t) {
+      return t.id !== id;
+    });
+
+  } catch (error) {
+    alert("No se pudo conectar con el servidor");
+  }
+}
 
 // =====================
 // CARGAR TRANSACCIONES

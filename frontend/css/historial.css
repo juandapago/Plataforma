@@ -219,3 +219,28 @@ body {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+/* =====================
+   BOTON ELIMINAR
+   ===================== */
+.transaccion-derecha {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.btn-eliminar {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  padding: 0.2rem;
+}
+
+.btn-eliminar:hover {
+  opacity: 1;
+}
