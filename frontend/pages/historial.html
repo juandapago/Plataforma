@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Sin esta linea, las tildes y la ñ se veran con simbolos raros -->
+  <meta charset="UTF-8">
+  <!-- Hace que el ancho de la pagina sea el del dispositivo movil -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Texto que aparece en la pestana del navegador -->
+  <title>Historial — Plataforma</title>
+  <!-- Se conecta con Google Fonts para descargar las fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <!-- Estilos compartidos de todo el proyecto -->
+  <link rel="stylesheet" href="../css/global.css">
+  <!-- Estilos exclusivos del historial -->
+  <link rel="stylesheet" href="../css/historial.css">
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- Encabezado con boton de regreso -->
+    <div class="header">
+      <a href="dashboard.html">
+        <svg viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </a>
+      <h2>Historial</h2>
+    </div>
+
+    <!-- Filtros de tipo de transaccion -->
+    <div class="filtros">
+      <button class="filtro-btn active" id="filtroTodos" onclick="filtrar('todos')">
+        Todos
+      </button>
+      <button class="filtro-btn" id="filtroGastos" onclick="filtrar('gasto')">
+        Gastos
+      </button>
+      <button class="filtro-btn" id="filtroIngresos" onclick="filtrar('ingreso')">
+        Ingresos
+      </button>
+    </div>
+
+    <!-- Lista de transacciones — se llena con JS -->
+    <div class="lista" id="lista">
+      <div class="cargando">Cargando transacciones...</div>
+    </div>
+
+  </div>
+
+  <!-- Barra de navegacion inferior -->
+  <nav class="navbar">
+
+    <a href="dashboard.html" class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      Inicio
+    </a>
+
+    <a href="calendario.html" class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      Calendario
+    </a>
+
+    <a href="historial.html" class="nav-item active">
+      <svg viewBox="0 0 24 24">
+        <line x1="8" y1="6" x2="21" y2="6"/>
+        <line x1="8" y1="12" x2="21" y2="12"/>
+        <line x1="8" y1="18" x2="21" y2="18"/>
+        <line x1="3" y1="6" x2="3.01" y2="6"/>
+        <line x1="3" y1="12" x2="3.01" y2="12"/>
+        <line x1="3" y1="18" x2="3.01" y2="18"/>
+      </svg>
+      Historial
+    </a>
+
+    <a href="perfil.html" class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Perfil
+    </a>
+
+  </nav>
+
+  <!-- Archivo JS con la logica del historial -->
+  <script src="../js/historial.js"></script>
+
+</body>
+</html>

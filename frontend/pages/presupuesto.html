@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Sin esta linea, las tildes y la ñ se veran con simbolos raros -->
+  <meta charset="UTF-8">
+  <!-- Hace que el ancho de la pagina sea el del dispositivo movil -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Texto que aparece en la pestana del navegador -->
+  <title>Presupuesto — Plataforma</title>
+  <!-- Se conecta con Google Fonts para descargar las fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <!-- Estilos compartidos de todo el proyecto -->
+  <link rel="stylesheet" href="../css/global.css">
+  <!-- Estilos exclusivos del presupuesto -->
+  <link rel="stylesheet" href="../css/presupuesto.css">
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- Encabezado con boton de regreso -->
+    <div class="header">
+      <a href="dashboard.html">
+        <svg viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </a>
+      <h2>Presupuesto mensual</h2>
+    </div>
+
+    <!-- Tarjeta de estado del presupuesto actual -->
+    <div class="card-estado">
+      <p class="label">Gasto actual del mes</p>
+      <!-- El monto se llena con JS -->
+      <p class="monto" id="gastoActual">$0</p>
+
+      <!-- Barra de progreso -->
+      <div class="progreso-bar">
+        <div class="progreso-fill" id="progresoFill" style="width: 0%"></div>
+      </div>
+      <!-- Texto del porcentaje -->
+      <p class="progreso-texto" id="progresoTexto">Sin presupuesto definido</p>
+    </div>
+
+    <!-- Mensaje de exito, oculto por defecto -->
+    <div class="success-banner" id="successBanner">
+      ¡Presupuesto guardado correctamente!
+    </div>
+
+    <!-- Campo de limite de presupuesto -->
+    <div class="form-section">
+      <label>Límite del mes</label>
+      <div class="monto-input">
+        <span class="simbolo">$</span>
+        <input type="number" id="monto" placeholder="0" min="0">
+      </div>
+      <p class="error-msg" id="montoError">Ingresa un monto válido.</p>
+    </div>
+
+    <!-- Toggle de presupuesto flexible -->
+    <div class="toggle-row">
+      <div class="toggle-info">
+        <p>Presupuesto flexible</p>
+        <span>Permite superar el límite si es necesario</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="esFlexible">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <!-- Boton guardar -->
+    <button class="btn" id="btnPresupuesto" onclick="guardarPresupuesto()">
+      <span class="btn-text">Guardar presupuesto</span>
+      <div class="spinner"></div>
+    </button>
+
+  </div>
+
+  <!-- Barra de navegacion inferior -->
+  <nav class="navbar">
+
+    <a href="dashboard.html" class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      Inicio
+    </a>
+
+    <a href="calendario.html" class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      Calendario
+    </a>
+
+    <a href="historial.html" class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <line x1="8" y1="6" x2="21" y2="6"/>
+        <line x1="8" y1="12" x2="21" y2="12"/>
+        <line x1="8" y1="18" x2="21" y2="18"/>
+        <line x1="3" y1="6" x2="3.01" y2="6"/>
+        <line x1="3" y1="12" x2="3.01" y2="12"/>
+        <line x1="3" y1="18" x2="3.01" y2="18"/>
+      </svg>
+      Historial
+    </a>
+
+    <a href="perfil.html" class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Perfil
+    </a>
+
+  </nav>
+
+  <!-- Archivo JS con la logica del presupuesto -->
+  <script src="../js/presupuesto.js"></script>
+
+</body>
+</html>
